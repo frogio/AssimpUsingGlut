@@ -4,7 +4,7 @@
 void glReshape(int w, int h);
 void Display();
 
-Model model("obj/Wolf_dae.dae");
+Model model("obj/buddha.obj");
 
 float _zoom = 15.0f;
 unsigned char _btnState[3] = { 0, };
@@ -27,7 +27,7 @@ void main() {
 	glutDisplayFunc(Display);				// 윈도우 안에 그릴 함수 지정
 	glutMouseFunc(Mouse);					// 마우스 콜백 함수
 	glutMotionFunc(mouseMotion);
-	glEnable(GL_DEPTH_TEST);									// 꼭 필요함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	glEnable(GL_DEPTH_TEST);									// 꼭 필요함 깊이 버퍼를 Enable 해주어야 함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	glutMainLoop();							// 렌더링 루프
 
 }
