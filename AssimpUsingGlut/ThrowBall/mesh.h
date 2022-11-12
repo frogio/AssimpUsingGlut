@@ -28,22 +28,19 @@ struct Texture {
 };
 
 class Mesh {
-public:
+private:
 	vector<Vertex *> vertices;				// 버텍스 집합
 	vector<unsigned int> indices;			// 버텍스의 찍는 순서
-	//vector<unsigned int> faces;
+	vector<glm::vec3 *> normal;				// face에 대한 노말값
 	vector<Texture> textures;
 
+	vector<glm::vec3*> CalculFaceNormal();
+
+
+public: 
 	Mesh(vector<Vertex *> _vertices, vector<unsigned int> indices, vector<Texture> _textures);
 	void drawWire();
 	void drawSolid();
-	vector<Vertex *> getVertices();
-
-
-	//~Mesh() {
-	//	for (int i = 0; i < vertices.size(); i++)
-	//		delete vertices[i];
-	//}
 
 
 };
