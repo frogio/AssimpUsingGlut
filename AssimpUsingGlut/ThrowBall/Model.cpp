@@ -75,8 +75,9 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene) {
 	vector <Vertex *> vertices;
 	vector <unsigned int> indices;
 	vector <Texture> textures;
-	glm::vec3 minBound, maxBound;
 	/*
+	glm::vec3 minBound, maxBound;
+
 	minBound.x = DBL_MAX;
 	minBound.y = DBL_MAX;
 	minBound.z = DBL_MAX;
@@ -96,7 +97,6 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene) {
 		vector.z = mesh->mVertices[i].z;
 		
 		vertex->Position = vector;
-		
 		/*
 		if (minBound.x > vector.x)
 			minBound.x = vector.x;
@@ -115,6 +115,7 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene) {
 		
 		if (maxBound.z < vector.z)
 			maxBound.z = vector.z;
+
 		*/
 		// 버텍스 노말 처리
 		if(mesh->HasNormals()) {
@@ -143,6 +144,13 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene) {
 		
 			vertices.push_back(vertex); //}
 	}
+	// indices 처리
+
+	//indices = makeIndices(&vertices);
+	//printf("indices Size : %d\n", indices.size());
+	//
+	//for (int i = 0; i < indices.size(); i++) 
+	//	 printf("vertex : %f %f %f\n", vertices[indices[i]].Position.x, vertices[indices[i]].Position.y, vertices[indices[i]].Position.z);
 
 	for (unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
@@ -166,12 +174,61 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene) {
 	}
 	*/
 
+	//printf("total count of vertices : %d\n", vertices.size());
+	//printf("total count of indices : %d\n", indices.size());
+
+	//moveToCenter(minBound, maxBound, 3.0f, 0);		// Mesh 벡터에 원소를 추가하기도 전에 참조가 되므로 오류 발생.
+	
 	//moveToCenter(minBound, maxBound, 3.f, vertices);
 	return Mesh(vertices, indices, textures);
 
 }
 
 
+
+/*
+vector<unsigned int> Model::makeIndices(vector<Vertex>* vertices) {
+
+	vector<unsigned int> indices;
+	FILE* fp = fopen(path, "r");
+	float pos[3] = {0,};
+	char header[256] = { 0, };
+
+	printf("vertices->size : %d\n", vertices->size());
+
+	for (unsigned int i = 0; i < 30; i++) {
+		printf("vertex %d : %f %f %f\n", i, (*vertices)[i].Position.x, (*vertices)[i].Position.y, (*vertices)[i].Position.z);
+		int idx = 0;
+
+		while (fscanf(fp, "%s %f %f %f", header, &pos[0], &pos[1], &pos[2]) != EOF) {
+
+			if (header[0] == 'v' && header[1] == NULL) {
+				Vertex v;
+				v.Position.x = pos[0];
+				v.Position.y = pos[1];
+				v.Position.z = pos[2];
+
+
+				if ((*vertices)[i] == v){
+					printf("searching vertex : %f %f %f\n", v.Position.x, v.Position.y, v.Position.z);
+					indices.push_back(idx + 1);
+					break;
+				}
+				idx++;
+			}
+		}
+		rewind(fp);
+
+	}
+
+	for (int i = 0; i < indices.size(); i++) {
+		printf("indices : %d\n", indices[i]);
+	}
+
+	fclose(fp);
+	return indices;
+}
+*/
 /*
 vector<Texture> Model:: loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName) {
 	
@@ -251,6 +308,7 @@ void Model::moveToCenter(glm::vec3 minBound, glm::vec3 maxBound, float scale, ve
 		pos = origin;
 		pos += vecVertexFromCenter;
 		vertices[i]->Position = pos;
+		//printf("idx %d] %f %f %f\n",i, vertices[i]->Position.x, vertices[i]->Position.y, vertices[i]->Position.z);
 	}
 
 }
