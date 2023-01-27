@@ -1,7 +1,8 @@
 # AssimpUsingGlut
 Assimp와 glut을 이용해 3D 모델 출력
 
-C++로 작성되어 있음
+작성 환경
+Windows 10, Visual Studio 2019, Assimp, OpenGL, C++
 
 아래는 실행 결과
 
