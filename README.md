@@ -1,5 +1,5 @@
 # AssimpUsingGlut
-Assimp와 glut을 이용해 3D 출력
+Assimp와 glut을 이용해 3D 모델 출력
 
 C++로 작성되어 있음
 
