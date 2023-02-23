@@ -1,5 +1,5 @@
 # AssimpUsingGlut
-Assimp와 glut을 이용해 3D 모델 출력
+Assimp와 glut을 이용해 3D Mesh 출력
 
 작성 환경
 Windows 10, Visual Studio 2019, Assimp, OpenGL, C++
