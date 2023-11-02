@@ -11,7 +11,7 @@ void Mesh::drawWire() {
 	glPushMatrix();
 	glDisable(GL_LIGHTING);
 	
-	for (unsigned int i = 0; i < indices.size() - 2/* 메모리 사이즈를 넘지 못하도록 -2까지만 그리도록 한다. */; i += 3/* 3개씩 묶어서 선을 그리니 +3씩 해준다*/) {		
+	for (unsigned int i = 0; i < indices.size()/* 메모리 사이즈를 넘지 못하도록 -2까지만 그리도록 한다. */; i += 3/* 3개씩 묶어서 선을 그리니 +3씩 해준다*/) {		
 		glBegin(GL_LINES);
 
 		for (int j = 0; j < 3; j++){
@@ -35,7 +35,7 @@ void Mesh::drawSolid() {
 
 	glPushMatrix();
 
-	for (unsigned int i = 0; i < indices.size() - 2/* 메모리 사이즈를 넘지 못하도록 -2까지만 그리도록 한다. */; i += 3/* 3개씩 묶어서 면을 그리니 +3씩 해준다*/) {
+	for (unsigned int i = 0; i < indices.size()/* 메모리 사이즈를 넘지 못하도록 -2까지만 그리도록 한다. */; i += 3/* 3개씩 묶어서 면을 그리니 +3씩 해준다*/) {
 		glBegin(GL_POLYGON);
 		// 평면에 대한 노말벡터는 버텍스를 3개씩 묶어서 설정하므로 / 3을 해준다.
 		
